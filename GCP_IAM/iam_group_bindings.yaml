@@ -1,0 +1,56 @@
+projects:
+  - name: gcp-010-dev
+    bindings:
+      - principal: serviceAccount:sa-data-team-specific@gcp-010-dev.iam.gserviceaccount.com
+        roles:
+          - roles/bigquery.jobUser
+          - roles/bigquery.user
+          - roles/bigquery.dataEditor
+          - roles/storage.admin
+          - roles/cloudfunctions.admin
+          - roles/dataflow.developer
+      - principal: serviceAccount:sa-function-runner@gcp-010-dev.iam.gserviceaccount.com
+        roles:
+          - roles/storage.objectAdmin
+      - principal: serviceAccount:sa-pubsub-dataflow@gcp-010-dev.iam.gserviceaccount.com
+        roles:
+          - roles/storage.objectAdmin
+          - roles/storage.admin
+          - roles/cloudfunctions.admin
+          - roles/dataflow.developer
+      - principal: serviceAccount:sa-schedule-runner@gcp-010-dev.iam.gserviceaccount.com
+        roles:
+          - roles/bigquery.dataEditor
+          - roles/cloudfunctions.admin
+  - name: gcp-010-qa
+    bindings:
+      - principal: serviceAccount:sa-pubsub-dataflow@gcp-010-qa.iam.gserviceaccount.com
+        roles:
+          - roles/bigquery.jobUser
+          - roles/bigquery.user
+          - roles/bigquery.dataEditor
+          - roles/storage.admin
+          - roles/cloudfunctions.admin
+          - roles/dataflow.developer
+          - roles/cloudfunctions.invoker  # Additional role in this project
+      - principal: serviceAccount:sa-data-team-specific@gcp-010-qa.iam.gserviceaccount.com
+        roles:
+          - roles/cloudfunctions.admin
+      - principal: serviceAccount:sa-pubsub-dataflow@gcp-010-qa.iam.gserviceaccount.com
+        roles:
+          - roles/bigquery.dataEditor
+          - roles/cloudfunctions.admin
+          - roles/viewer
+  - name: gcp-010-prod
+    bindings:
+      - principal: serviceAccount:eid_ml_grp@example.com
+        roles:
+          - roles/storage.objectViewer
+          - roles/bigquery.jobUser
+          - roles/bigquery.user
+  - name: gcp-010-stage
+    bindings:
+      - principal: serviceAccount:eid_ml_grp@example.com
+        roles:
+          - roles/ml.admin
+          - roles/storage.objectViewer

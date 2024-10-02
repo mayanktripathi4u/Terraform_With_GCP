@@ -1,0 +1,20 @@
+projects:
+  - name: gcp-010-qa
+    bindings:
+      - principal: serviceAccount:sa-schedule-runner@gcp-010-qa.iam.gserviceaccount.com
+        roles:
+          - roles/bigquery.jobUser
+          - roles/bigquery.user
+          - roles/bigquery.dataEditor
+          - roles/storage.admin
+          - roles/cloudfunctions.admin
+          - roles/dataflow.developer
+          - roles/cloudfunctions.invoker  # Additional role in this project
+      - principal: serviceAccount:sa-data-team-specific@gcp-010-qa.iam.gserviceaccount.com
+        roles:
+          - roles/cloudfunctions.admin
+      - principal: serviceAccount:sa-pubsub-dataflow@gcp-010-qa.iam.gserviceaccount.com
+        roles:
+          - roles/bigquery.dataEditor
+          - roles/cloudfunctions.admin
+          - roles/viewer
